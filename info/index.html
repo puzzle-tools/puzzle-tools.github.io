@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>User Info</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #006600;
+        }
+
+        .info-box {
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px;
+        }
+
+        #js-enabled {
+            color: #006600;
+        }
+
+        #user-agent {
+            color: #0000cc;
+        }
+
+        #unknown-props {
+            color: #cc0000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="info-box">
+        <h1>User Info</h1>
+
+        <p id="js-enabled">JavaScript Enabled: No</p>
+        <p>User Agent: <span id="user-agent">Loading...</span></p>
+        <p>Unknown Properties: <span id="unknown-props">Loading...</span></p>
+        
+    </div>
+
+    <script>
+        // Check if JavaScript is enabled
+        document.getElementById('js-enabled').textContent = 'JavaScript Enabled: Yes';
+
+        // Get the user agent
+        document.getElementById('user-agent').textContent = navigator.userAgent;
+
+        // Fetch known properties from the server
+        fetch('./props.min.json')
+            .then(response => response.json())
+            .then(knownProps => {
+
+                // Find unknown properties in the 'window' object
+                const unknownProps = [];
+                for (const prop in window) {
+                    if (window.hasOwnProperty(prop) && !knownProps.includes(prop)) {
+                        unknownProps.push(prop);
+                    }
+                }
+
+                const unknownPropsElement = document.getElementById('unknown-props');
+                if (unknownProps.length > 0) {
+                    unknownPropsElement.textContent = unknownProps.join(', ');
+                } else {
+                    unknownPropsElement.textContent = 'None';
+                }
+            })
+            .catch(error => {
+                console.error('Failed to fetch known properties:', error);
+            });
+    </script>
+</body>
+
+</html>
