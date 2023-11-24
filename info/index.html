@@ -34,6 +34,28 @@
         #unknown-props {
             color: #cc0000;
         }
+        /*  */
+        input[type="text"] {
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+
+    button {
+      padding: 8px 12px;
+      border-radius: 4px;
+      border: none;
+      background-color: #007bff;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
     </style>
 </head>
 
@@ -44,6 +66,10 @@
         <p id="js-enabled">JavaScript Enabled: No</p>
         <p>User Agent: <span id="user-agent">Loading...</span></p>
         <p>Unknown Properties: <span id="unknown-props">Loading...</span></p>
+        <hr>
+        <label for="url">enter URL:</label>
+        <input type="text" id="url" name="url"><br><br>
+        <button type="button" onclick="document.location = document.getElementById('url').value">Redirect</button>
         
     </div>
 
