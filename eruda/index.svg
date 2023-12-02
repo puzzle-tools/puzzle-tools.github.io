@@ -8,6 +8,6 @@
 
   You should see the awesome Eruda JavaScript console 
   <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-  <script defer>eruda.init();eruda.show()</script>
+  <script defer="">eruda.init();eruda.show()</script>
 </body>
 </html> 
