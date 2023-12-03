@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Simple JavaScript Console</title>
+  <script type="text/javascript">
+    function writeToConsole() {
+      var input = document.getElementById('consoleInput').value;
+      var output = document.getElementById('consoleOutput');
+      if (input){
+      output.innerHTML = output.innerHTML+ eval(input) + '&lt;br/&gt;';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Simple JavaScript Console</h1>
+  <input type="text" id="consoleInput" placeholder="Type here" />
+  <button onclick="writeToConsole()">Log</button>
+  <div id="consoleOutput"></div>
+</body>
+</html>
